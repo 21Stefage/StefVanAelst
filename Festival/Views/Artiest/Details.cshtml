@@ -1,0 +1,59 @@
+﻿@model Festival.ViewModel.DetailsArtiestViewModel
+@{
+    ViewData["Title"] = "Details";
+}
+<h1>Details</h1>
+<h4>Artiest</h4>
+<hr />
+
+<dl class="row">
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Voornaam)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Voornaam)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Achternaam)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Achternaam)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Artiestnaam)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Artiestnaam)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Leeftijd)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Leeftijd)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Dag)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Dag.DagNaam)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Genre)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Genre.GenreNaam)
+    </dd>
+    <dt class="col-sm-2">
+        Liedjes van de artiest: 
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.ArtiestSong)
+    </dd>
+</dl>
+
+<div>
+    <a asp-action="Index">Terug naar de lijst</a>
+</div>
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

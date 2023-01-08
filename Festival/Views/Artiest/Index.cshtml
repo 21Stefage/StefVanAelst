@@ -1,0 +1,90 @@
+﻿@model Festival.ViewModel.ArtiestListViewModel
+
+@{
+    ViewData["Title"] = "Line up";
+}
+
+<h2>Line up</h2>
+@if (this.User.IsInRole("Admin"))
+{
+    <p>
+        <a asp-action="Create">Voeg nieuwe artiest toe</a>
+    </p>
+}
+
+<form asp-controller="Artiest" asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+
+            Zoek op artiestnaam:
+            <input asp-for="ArtiestSearch" />
+            <input type="submit" value="Zoeken" class="btn btn-primary" />
+            <a asp-controller="Artiest" asp-action="Index">Terug naar volledige lijst</a>
+        </p>
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(v => v.Artiesten[0].Voornaam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(v => v.Artiesten[0].Achternaam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(v => v.Artiesten[0].Artiestnaam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(v => v.Artiesten[0].Leeftijd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(v => v.Artiesten[0].Genre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(v => v.Artiesten[0].Dag)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Artiesten)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Voornaam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Achternaam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Artiestnaam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Leeftijd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dag.DagNaam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Genre.GenreNaam)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.ArtiestId">Details</a>
+            </td>
+            @if (this.User.IsInRole("Admin"))
+            {
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ArtiestId">Edit</a>
+                </td>
+
+
+                <td>
+                    <a asp-action="Delete" asp-route-id="@item.ArtiestId">Delete</a>
+                </td>
+            }
+
+
+        </tr>
+        }
+    </tbody>
+</table>
